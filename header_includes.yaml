@@ -1,0 +1,17 @@
+---
+geometry: margin=1in
+header-includes:
+    - \AtBeginDocument{\renewcommand\setminus{\smallsetminus}}
+    - \usepackage{amssymb,amsmath}
+    - \usepackage{chemfig}
+    - \usepackage{tikz-cd}
+    - \usepackage{circuitikz}
+    - \usepackage{pgfplots}
+    - \usepackage{array}
+    - \usepackage{tikz-3dplot}
+    - \usepackage{bbold}
+    - \let\OldRule\rule
+    - \renewcommand{\rule}[2]{\OldRule{\linewidth}{#2}}
+fontsize: 12pt
+papersize: a4
+---
