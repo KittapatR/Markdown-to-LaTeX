@@ -45,7 +45,7 @@ else:
             tikz = False
             first_line = True
             new_lines = []
-            for line in lines:
+            for line in lines[:-1]:
                 if (line.strip() == "```tikz"):
                     tikz = True
                     new_lines.append(r"\begin{center}")
@@ -76,7 +76,8 @@ else:
                         new_lines.append(line)
                     first_line = False
                 else:
-                    new_lines.append(line)
+                    new_lines.append(line[:-1]+"  \n")
+            new_lines.append(lines[-1])
         with open("{}_tmp.md".format(filename[:-3]), "w", encoding = "utf-8") as f_new:
             f_new.writelines(new_lines)
         if not(args.xelatex):

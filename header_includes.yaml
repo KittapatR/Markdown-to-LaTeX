@@ -9,9 +9,6 @@ header-includes:
     - \usepackage{pgfplots}
     - \usepackage{array}
     - \usepackage{tikz-3dplot}
-    - \usepackage{bbold}
-    - \let\OldRule\rule
-    - \renewcommand{\rule}[2]{\OldRule{\linewidth}{#2}}
 fontsize: 12pt
 papersize: a4
 ---
