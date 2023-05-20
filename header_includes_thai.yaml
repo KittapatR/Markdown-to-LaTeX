@@ -2,6 +2,7 @@
 geometry: margin=1in
 header-includes:
     - \AtBeginDocument{\renewcommand\setminus{\smallsetminus}}
+    - \let\tightlist\relax
     - \usepackage{amssymb,amsmath}
     - \usepackage{setspace}
     - \linespread{1.3}

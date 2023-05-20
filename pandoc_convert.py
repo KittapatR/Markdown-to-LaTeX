@@ -28,6 +28,10 @@ parser.add_argument(
     "--date", "-d", type=str, help = "Add date", nargs = "?"
 )
 
+parser.add_argument(
+    "--hone", "-ho", help = "Header format", action = "store_true"
+)
+
 args = parser.parse_args()
 if not(args.filename) and not(args.folder):
     print('Missing arguments in filename or folder.')
@@ -60,13 +64,17 @@ else:
                     if (args.author) or (args.date):
                         new_lines.append(r"\begin{center}"+"\n\n")
                         if re.findall("^#", line) != []:
-                            new_lines.append(r"\textbf{" + line[1:-1] + r"}\\" + "\n")
+                            if not(args.hone): new_lines.append(r"\textbf{" + line[1:-1] + r"}\\" + "\n")
+                            else: highlight = new_lines.append(r"{\Large" + line[1:-1] + r"}\\[6pt]" + "\n")
+                            
                         else:
                             new_lines.append(r"\textbf{"+"{}".format(filename[:-3].split("\\")[-1])+r"}\\"+"\n")
-                        if not(args.date):
-                            new_lines.append(r"\today{}\\" + "\n")
-                        else:
-                            new_lines.append(args.date+r"\\" + "\n")
+                        if not(args.nodate):
+                            if not(args.date):
+                                if (args.hone): new_lines.append(r"Last updated: \today{}\\" + "\n")
+                                else: new_lines.append(r"\today{}\\" + "\n")
+                            else:
+                                new_lines.append(args.date+r"\\" + "\n")
                         if args.author: new_lines.append("{}  \n".format(args.author))
                         new_lines.append(r"\end{center}"+"\n\n")
                         new_lines.append("---\n")
@@ -76,7 +84,9 @@ else:
                         new_lines.append(line)
                     first_line = False
                 else:
-                    new_lines.append(line[:-1]+"  \n")
+                    if (re.findall("[-0123456789]+", line.split(" ")[0]) != []):
+                        new_lines.append(line[:-1]+"\n")
+                    else: new_lines.append(line[:-1]+"  \n")
             new_lines.append(lines[-1])
         with open("{}_tmp.md".format(filename[:-3]), "w", encoding = "utf-8") as f_new:
             f_new.writelines(new_lines)
