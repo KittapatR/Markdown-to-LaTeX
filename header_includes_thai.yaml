@@ -5,7 +5,9 @@ header-includes:
     - \let\tightlist\relax
     - \usepackage{amssymb,amsmath}
     - \usepackage{setspace}
+    - \usepackage{polyglossia}
     - \linespread{1.3}
+    - \XeTeXlinebreaklocale "th"
 fontsize: 12pt
 papersize: a4
 ---
