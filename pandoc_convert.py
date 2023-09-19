@@ -44,6 +44,7 @@ else:
     elif args.filename:
         file_to_execute = [args.filename]
     for filename in file_to_execute:
+        filename = re.sub("\\\\", "/", filename)
         with open(filename, "r", encoding = "utf-8") as f:
             lines = f.readlines()
             tikz = False
@@ -59,6 +60,19 @@ else:
                     new_lines.append(r"\end{center}")
                     continue
                 elif tikz and (re.findall(r"\\usepackage|\\begin\{document\}|\\end\{document\}", line) != []):
+                    continue
+                pattern = re.findall("!\[[^\]]*\]\(\./", line)
+                if (pattern != []):
+                    focused = len(pattern[0]) - 2
+                    new_lines.append(line[:focused]
+                            + filename[
+                                :[
+                                    match.span()
+                                    for match
+                                    in re.finditer("/", filename)
+                                ][-1][0]
+                                ]
+                            + line[focused + 1:])
                     continue
                 if first_line:
                     if (args.author) or (args.date):
