@@ -4,6 +4,8 @@ header-includes:
     - \AtBeginDocument{\renewcommand\setminus{\smallsetminus}}
     - \let\tightlist\relax
     - \usepackage{amssymb,amsmath}
+    - \usepackage{centernot}
+    - \usepackage{mathrsfs} 
     - \usepackage{chemfig}
     - \usepackage{tikz-cd}
     - \usepackage{circuitikz}

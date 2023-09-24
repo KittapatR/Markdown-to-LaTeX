@@ -4,8 +4,14 @@ header-includes:
     - \AtBeginDocument{\renewcommand\setminus{\smallsetminus}}
     - \let\tightlist\relax
     - \usepackage{amssymb,amsmath}
-    - \usepackage{setspace}
-    - \usepackage{polyglossia}
+    - \usepackage{centernot}
+    - \usepackage{mathrsfs} 
+    - \usepackage{chemfig}
+    - \usepackage{tikz-cd}
+    - \usepackage{circuitikz}
+    - \usepackage{pgfplots}
+    - \usepackage{array}
+    - \usepackage{tikz-3dplot}
     - \linespread{1.3}
     - \XeTeXlinebreaklocale "th"
 fontsize: 12pt
